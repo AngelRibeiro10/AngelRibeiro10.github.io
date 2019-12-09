@@ -105,7 +105,6 @@ figure {
       transform: translateX(-300px);
       padding-top: 4em; } }
   #colorlib-aside .author-img {/*imagens de boas vindas*/
-     
     width: 150px;
     height: 150px;
     margin: 0 auto;
@@ -321,7 +320,9 @@ figure {
       margin-left:15%;/*200px;*/
     }
 
-
+.slides .desc{
+      margin-top: -1120px;  
+    }
       #colorlib-hero .flexslider .slider-text > .slider-text-inner {
         display: table-cell;
         vertical-align: middle;
@@ -331,21 +332,28 @@ figure {
         padding: 2.5em;
         padding-left: -1000px;
         background-size:500% 1500%;
+         
         /* position: relative; */
         /* left: 0%; */
       }
         @media screen and (max-width: 100%/*768px*/){
           #colorlib-hero .flexslider .slider-text > .slider-text-inner {
             /* max-width: 100% */
-            text-align: center; } }
+            text-align: center; 
+          
+          } }
         #colorlib-hero .flexslider .slider-text > .slider-text-inner h1, #colorlib-hero .flexslider .slider-text > .slider-text-inner h2 {
           margin: 0%;
           padding: 0%;
           /* background-position:0% 0%; */
           color: black;
-          font-family: "Playfair Display", Georgia, serif; }
+          font-family: "Playfair Display", Georgia, serif; 
+          margin-top: 0%;
+        }
+        
         #colorlib-hero .flexslider .slider-text > .slider-text-inner h1 {
           margin-bottom: 20px;
+         margin-top: -1420px; 
           /* left:0%; */
           font-size: 60px;
           line-height: 1.3;
