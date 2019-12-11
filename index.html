@@ -798,53 +798,73 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				</div>
 			</section>
 
-			<section class="colorlib-blog" data-section="blog">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">Read</span>
-							<h2 class="colorlib-heading">Recent Blog</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="blog-entry">
-								<a href="blog.html" class="blog-img"><img src="images/blog-1.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-								<div class="desc">
-									<span><small>April 14, 2018 </small> | <small> Web Design </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-									<h3><a href="blog.html">Renovating National Gallery</a></h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="blog-entry">
-								<a href="blog.html" class="blog-img"><img src="images/blog-2.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-								<div class="desc">
-									<span><small>April 14, 2018 </small> | <small> Web Design </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-									<h3><a href="blog.html">Wordpress for a Beginner</a></h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="blog-entry">
-								<a href="blog.html" class="blog-img"><img src="images/blog-3.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-								<div class="desc">
-									<span><small>April 14, 2018 </small> | <small> Inspiration </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-									<h3><a href="blog.html">Make website from scratch</a></h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12 animate-box">
-							<p><a href="#" class="btn btn-primary btn-lg btn-load-more">Load more <i class="icon-reload"></i></a></p>
-						</div>
-					</div>
-				</div>
-			</section>
+<div id="demo"></div>
+<script>
+function getPosts(json){
+    var list = [];
+    var data = json.feed.entry;
+    list.push("<section class='colorlib-blog' data-section='blog'>");
+    list.push("<div class='colorlib-narrow-content'>");
+    list.push("<div class='row'>");
+    list.push("<div class='col-md-6 col-md-offset-3 col-md-pull-3 animate-box' data-animate-effect='fadeInLeft'>");
+    list.push("<span class='heading-meta'>Read</span>");
+    list.push("<h2 class='colorlib-heading'>Recent Blog</h2>");
+    list.push("</div>");
+    list.push("</div>");
+    
+    for (var i = 0; i < data.length; i++) {
+        var title = "<h3>" + data[i].title.$t + "</h3>";
+        var link = data[i].link.pop().href;
+		var summary = "<p>" + data[i].content.$t.replace(/<\/?[^>]+(>|$)/g, "").substr(0, 120) + "</p>";
+		
+		var dateT = data[i].published.$t.substr(0, 10);
+        
+        if (data[i].media$thumbnail) {
+        	var img = "<img src='" + data[i].media$thumbnail.url + "' class='img-responsive' alt='HTML5 Bootstrap Template by colorlib.com'>";
+        } else {
+        	var doc = new DOMParser().parseFromString(data[i].content.$t, "text/html");
+        	var imgtag = doc.querySelector('img');
+        	if (imgtag) {
+        		var img = "<img src='" + imgtag.src + "' class='img-responsive' alt='HTML5 Bootstrap Template by colorlib.com'>";
+        	} else {
+        		var img = "";
+        	}
+        	
+        }
+	list.push("<div class='row'>");
+    list.push("<div class='col-md-4 col-sm-6 animate-box' data-animate-effect='fadeInLeft'>");
+    list.push("<div class='blog-entry'>");
+    list.push("<div class='feed-post'>");
+    list.push("<a href='"+link+"' class='blog-img'>"+img+"</a>");
+    list.push("<div class='desc'>");
+    list.push("<span><small>"+dateT+"</small> | <small> Angélica Ribeiro </small> | <small> <i class='icon-bubble3'></i> 4</small></span>");
+    list.push("<h3><a href='"+link+"'>"+title+"</a></h3>");
+    list.push(summary);
+    list.push("</div>");
+    list.push("</div>");
+    list.push("</div>");
+    list.push("</div>");
+}
+	list.push("</div>");
+	list.push("<div class='row'>");
+	list.push("<div class='col-md-12 animate-box'>");
+	list.push("<p><a href='#' class='btn btn-primary btn-lg btn-load-more'>Load more <i class='icon-reload'></i></a></p>");
+	list.push("</div>");
+	list.push("</div>");
+	list.push("</div>");
+	list.push("</section>");
+	document.getElementById('demo').innerHTML = list.join('');
+	
+}
+    
+
+
+</script>
+
+
+	
+
+<script src="https://www.blogger.com/feeds/614640065733671379/posts/default?alt=json&max-results=3&callback=getPosts"></script>			
 
 			<section class="colorlib-contact" data-section="contact">
 				<div class="colorlib-narrow-content">
@@ -892,18 +912,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						<div class="col-md-7 col-md-push-1">
 							<div class="row">
 								<div class="col-md-10 col-md-offset-1 col-md-pull-1 animate-box" data-animate-effect="fadeInRight">
-									<form action="">
+									<form method="post" name="contact_form" action="contact-form-handler.php">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Name">
+											<input type="text" class="form-control" placeholder="Name" name="name">
 										</div>
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Email">
+											<input type="text" class="form-control" placeholder="Email" name="email">
 										</div>
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Subject">
+											<input type="text" class="form-control" placeholder="Subject" name="subject">
 										</div>
 										<div class="form-group">
-											<textarea name="" id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+											<textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
 										</div>
 										<div class="form-group">
 											<input type="submit" class="btn btn-primary btn-send-message" value="Send Message">
