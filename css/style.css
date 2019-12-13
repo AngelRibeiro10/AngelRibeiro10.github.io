@@ -274,6 +274,13 @@ figure {
       
     }
 
+
+.col-md-push-1{
+
+  left:10px;
+  top:-10px;
+}
+
       #colorlib-hero .flexslider .slides li {
 
         /* background-size: 100px auto;100% */
