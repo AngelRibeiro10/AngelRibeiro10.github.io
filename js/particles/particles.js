@@ -50,7 +50,7 @@ var pJS = function(tag_id, params){
         anim: {
           enable: false,
           speed: 2,
-          opacity_min: 0,
+          opacity_min: 50,
           sync: false
         }
       },
